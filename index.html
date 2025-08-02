@@ -1,0 +1,2152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tapium - Tap to Earn Coins, Rise Through Ranks</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <style>
+  /* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap');
+
+/* CSS Variables */
+:root {
+  /* Backgrounds - Dark Theme Foundation */
+  --bg-primary: #000000;
+  --bg-secondary: #121212;
+  --bg-overlay: rgba(255, 255, 255, 0.1);
+  
+  /* Text - High Contrast for Dark Theme */
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-muted: #4D4D4D;
+  
+  /* Borders - Subtle Dark Theme */
+  --border-subtle: rgba(255, 255, 255, 0.25);
+  --border-medium: rgba(255, 255, 255, 0.4);
+  
+  /* MAIN ACCENT COLORS - Brand Colors Only */
+  --brand-primary: #00FFD1;
+  --brand-hover: rgba(0, 255, 209, 0.1);
+  --brand-active: #6FD2C0;
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'JetBrains Mono', 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Typography Scale - High Contrast Dark Theme */
+.display-huge { 
+  font-size: 66px; 
+  font-weight: 600; 
+  line-height: 1.1; 
+  letter-spacing: -0.62px; 
+  color: var(--text-primary); 
+}
+
+.display-large { 
+  font-size: 48px; 
+  font-weight: 600; 
+  line-height: 1.1; 
+  letter-spacing: -0.02em; 
+  color: var(--text-primary); 
+}
+
+.display-medium { 
+  font-size: 32px; 
+  font-weight: 600; 
+  line-height: 1.25; 
+  letter-spacing: -0.01em; 
+  color: var(--text-primary); 
+}
+
+.heading-1 { 
+  font-size: 28px; 
+  font-weight: 600; 
+  line-height: 1.2; 
+  letter-spacing: -0.005em; 
+  color: var(--text-primary); 
+}
+
+.heading-2 { 
+  font-size: 24px; 
+  font-weight: 600; 
+  line-height: 1.3; 
+  letter-spacing: -0.02em; 
+  color: var(--text-primary); 
+}
+
+.heading-3 { 
+  font-size: 20px; 
+  font-weight: 600; 
+  line-height: 1.4; 
+  letter-spacing: 0; 
+  color: var(--text-primary); 
+}
+
+.body-large { 
+  font-size: 20px; 
+  font-weight: 500; 
+  line-height: 1.5; 
+  letter-spacing: 0; 
+  color: var(--text-primary); 
+}
+
+.body-medium { 
+  font-size: 18px; 
+  font-weight: 400; 
+  line-height: 1.5; 
+  letter-spacing: 0; 
+  color: var(--text-secondary); 
+}
+
+.body-small { 
+  font-size: 16px; 
+  font-weight: 400; 
+  line-height: 1.4; 
+  letter-spacing: 0; 
+  color: var(--text-secondary); 
+}
+
+.body-muted { 
+  font-size: 16px; 
+  font-weight: 400; 
+  line-height: 1.4; 
+  letter-spacing: 0; 
+  color: var(--text-muted); 
+}
+
+/* Button Styles */
+.btn-primary {
+  background: var(--brand-primary);
+  color: #000000;
+  border: none;
+  border-radius: 0px;
+  padding: 14px 24px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  min-height: 56px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.btn-primary:hover {
+  background: var(--brand-hover);
+  color: var(--brand-primary);
+  transform: scale(1.02);
+}
+
+.btn-primary:active {
+  background: var(--brand-active);
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 0px;
+  padding: 14px 24px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  min-height: 56px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.btn-secondary:hover {
+  background: #FFFFFF;
+  color: #000000;
+  transform: scale(1.02);
+}
+
+.btn-secondary:active {
+  background: #F0F0F0;
+  transform: scale(0.98);
+}
+
+/* Header Styles */
+.dark-header {
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 16px 7.6923%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.dark-logo {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--brand-primary);
+  text-decoration: none;
+}
+
+.dark-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.dark-nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 400;
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dark-nav-link:hover {
+  color: var(--text-primary);
+}
+
+.dark-nav-link.active {
+  color: var(--brand-active);
+}
+
+.mobile-menu {
+  display: none;
+}
+
+/* Layout Styles */
+.dark-container {
+  background: var(--bg-primary);
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.dark-content-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 7.6923%;
+}
+
+/* Spacing System */
+.space-large { margin: 60px 0; }
+.space-xlarge { margin: 100px 0; }
+.space-xxlarge { margin: 160px 0; }
+
+.pad-large { padding: 60px 0; }
+.pad-xlarge { padding: 100px 0; }
+.pad-xxlarge { padding: 160px 0; }
+
+/* Animation Classes */
+.dark-transition {
+  transition: all 0.4s ease-in-out;
+}
+
+.dark-hover:hover {
+  transform: translateY(-2px);
+}
+
+.dark-button-animate {
+  transition: all 0.4s ease-in-out;
+}
+
+.dark-button-animate:hover {
+  transform: scale(1.02);
+}
+
+/* Hero Section */
+.hero-content {
+  text-align: center;
+}
+
+.hero-icon {
+  margin-bottom: 40px;
+}
+
+.app-icon {
+  width: 120px;
+  height: 120px;
+  background: var(--brand-primary);
+  border-radius: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 40px auto;
+}
+
+.hero-title {
+  margin-bottom: 24px;
+}
+
+.hero-subtitle {
+  margin-bottom: 60px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text-secondary);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 80px;
+}
+
+.hero-buttons .btn-primary,
+.hero-buttons .btn-secondary {
+  min-width: 200px;
+}
+
+.hero-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.preview-card {
+  background: var(--bg-secondary);
+  padding: 32px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+  text-align: center;
+}
+
+.preview-card svg {
+  margin-bottom: 16px;
+}
+
+.preview-card h3 {
+  margin-bottom: 12px;
+}
+
+/* Section Headers */
+.section-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.section-subtitle {
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--text-secondary);
+}
+
+/* About Section */
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 60px;
+  margin-bottom: 80px;
+}
+
+.about-features {
+  margin-top: 24px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 12px;
+}
+
+.feature-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.about-text {
+  margin-bottom: 24px;
+  color: var(--text-secondary);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  padding: 60px 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  color: var(--brand-primary);
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  color: var(--text-muted);
+}
+
+/* Features Section */
+.features-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 32px;
+  margin-bottom: 80px;
+}
+
+.feature-card {
+  background: var(--bg-secondary);
+  padding: 40px 32px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+  transition: all 0.4s ease-in-out;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+}
+
+.feature-card.coming-soon {
+  opacity: 0.7;
+}
+
+.feature-card svg {
+  margin-bottom: 24px;
+}
+
+.feature-card h3 {
+  margin-bottom: 16px;
+}
+
+.feature-soon-badge {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 8px;
+}
+
+.features-cta {
+  text-align: center;
+  margin-top: 80px;
+  padding: 60px 40px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+}
+
+.features-cta h3 {
+  margin-bottom: 16px;
+}
+
+.cta-text {
+  margin-bottom: 32px;
+  color: var(--text-secondary);
+}
+
+/* Roadmap Section */
+.roadmap-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.roadmap-card {
+  background: var(--bg-secondary);
+  padding: 40px 32px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+  transition: all 0.4s ease-in-out;
+  position: relative;
+}
+
+.roadmap-card:hover {
+  transform: translateY(-2px);
+}
+
+.status-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 0px;
+}
+
+.status-completed {
+  background: var(--brand-primary);
+  color: #000000;
+}
+
+.status-ongoing {
+  background: #FFA500;
+  color: #FFFFFF;
+}
+
+.status-upcoming {
+  background: var(--text-muted);
+  color: #FFFFFF;
+}
+
+.phase-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.phase-title {
+  margin-bottom: 8px;
+}
+
+.phase-description {
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.phase-items {
+  padding-left: 8px;
+}
+
+.phase-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.phase-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 0px;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.roadmap-summary {
+  margin-top: 80px;
+  text-align: center;
+  padding: 40px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+}
+
+.roadmap-summary h3 {
+  margin-bottom: 16px;
+}
+
+.summary-text {
+  margin-bottom: 24px;
+  color: var(--text-secondary);
+}
+
+/* How It Works Section */
+.how-it-works-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 100px;
+}
+
+.step-card {
+  position: relative;
+}
+
+.step-content {
+  background: var(--bg-secondary);
+  padding: 40px 32px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+  height: 100%;
+}
+
+.step-content:hover {
+  transform: translateY(-2px);
+}
+
+.step-number {
+  width: 60px;
+  height: 60px;
+  background: var(--brand-primary);
+  color: #000000;
+  border-radius: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px auto;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.step-icon {
+  margin-bottom: 24px;
+}
+
+.step-title {
+  margin-bottom: 16px;
+}
+
+.step-description {
+  margin-bottom: 16px;
+  color: var(--text-secondary);
+}
+
+.step-details {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.step-arrow {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+}
+
+.steps-cta {
+  margin-top: 100px;
+  text-align: center;
+  padding: 60px 40px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+}
+
+.steps-cta h3 {
+  margin-bottom: 16px;
+}
+
+.steps-cta .cta-text {
+  max-width: 500px;
+  margin: 0 auto 32px auto;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Screenshots Section */
+.screenshots-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.screenshots-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  min-height: 400px;
+}
+
+.carousel-btn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-btn:hover {
+  background: var(--brand-hover);
+}
+
+.prev-btn {
+  margin-right: 20px;
+}
+
+.next-btn {
+  margin-left: 20px;
+}
+
+.screenshot-display {
+  background: var(--bg-secondary);
+  padding: 40px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+  text-align: center;
+  flex: 1;
+  max-width: 600px;
+}
+
+.smartphone-icon {
+  margin-bottom: 24px;
+}
+
+.screenshot-frame {
+  width: 280px;
+  height: 480px;
+  background: #1a1a1a;
+  border: 2px solid var(--border-medium);
+  border-radius: 0px;
+  margin: 0 auto 24px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.screenshot-content {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  color: var(--text-primary);
+  text-align: center;
+  border-radius: 0px;
+}
+
+.screenshot-content h4 {
+  margin-bottom: 8px;
+}
+
+#mainScreenshotTitle {
+  margin-bottom: 12px;
+}
+
+#mainScreenshotDesc {
+  color: var(--text-secondary);
+}
+
+.dots-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 0px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: var(--brand-primary);
+}
+
+.dot:not(.active) {
+  background: var(--border-subtle);
+}
+
+.screenshots-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.screenshot-thumb {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.screenshot-thumb.active {
+  border: 2px solid var(--brand-primary);
+}
+
+.thumb-frame {
+  width: 60px;
+  height: 100px;
+  background: #1a1a1a;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+  margin: 0 auto 12px auto;
+}
+
+.thumb-title {
+  color: var(--text-muted);
+}
+
+.thumb-title.active {
+  color: var(--brand-primary);
+}
+
+/* Community Section */
+.community-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.community-card {
+  background: var(--bg-secondary);
+  padding: 40px 32px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+  text-align: center;
+}
+
+.community-card svg {
+  margin-bottom: 24px;
+}
+
+.community-card h3 {
+  margin-bottom: 16px;
+}
+
+.community-text {
+  margin-bottom: 32px;
+  color: var(--text-secondary);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.email-form {
+  width: 100%;
+}
+
+.email-input {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+  color: var(--text-primary);
+  font-size: 16px;
+  outline: none;
+  margin-bottom: 16px;
+}
+
+.email-input:focus {
+  border-color: var(--brand-primary);
+}
+
+.feedback-section {
+  background: var(--bg-secondary);
+  padding: 60px 40px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.feedback-section h3 {
+  margin-bottom: 16px;
+}
+
+.feedback-text {
+  margin-bottom: 40px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.feedback-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.feedback-textarea {
+  width: 100%;
+  padding: 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+  color: var(--text-primary);
+  font-size: 16px;
+  outline: none;
+  resize: vertical;
+  min-height: 120px;
+  margin-bottom: 24px;
+  font-family: inherit;
+}
+
+.feedback-textarea:focus {
+  border-color: var(--brand-primary);
+}
+
+.contact-info {
+  margin-top: 60px;
+  text-align: center;
+  padding: 40px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.contact-info h4 {
+  margin-bottom: 16px;
+}
+
+.contact-text {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.email-link {
+  color: var(--brand-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.email-link:hover {
+  color: var(--brand-active);
+}
+
+/* Footer */
+.footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding: 60px 0 40px 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.brand-title {
+  margin-bottom: 16px;
+  color: var(--brand-primary);
+}
+
+.brand-slogan {
+  margin-bottom: 20px;
+  color: var(--text-secondary);
+}
+
+.brand-version {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.footer-btn {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0px;
+  color: var(--text-primary);
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.footer-btn:hover {
+  background: var(--brand-hover);
+  color: var(--brand-primary);
+}
+
+.footer-links h4,
+.footer-legal h4,
+.footer-developer h4 {
+  margin-bottom: 20px;
+}
+
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.footer-link:hover {
+  color: var(--brand-primary);
+}
+
+.developer-title {
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.developer-name {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.developer-description {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.copyright p {
+  color: var(--text-muted);
+}
+
+.made-with {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dark-header {
+    padding: 16px 20px;
+    height: 70px;
+  }
+  
+  .dark-nav {
+    display: none;
+  }
+  
+  .mobile-menu {
+    display: block;
+  }
+  
+  .dark-container {
+    padding-top: 70px;
+  }
+  
+  .dark-content-container {
+    padding: 0 20px;
+  }
+  
+  .display-huge {
+    font-size: 42px;
+  }
+  
+  .display-large {
+    font-size: 36px;
+  }
+  
+  .space-large { margin: 40px 0; }
+  .space-xlarge { margin: 60px 0; }
+  .space-xxlarge { margin: 80px 0; }
+  
+  .pad-large { padding: 40px 0; }
+  .pad-xlarge { padding: 60px 0; }
+  .pad-xxlarge { padding: 80px 0; }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-secondary {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .about-grid,
+  .features-grid,
+  .roadmap-grid,
+  .steps-grid,
+  .community-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .step-arrow {
+    display: none;
+  }
+  
+  .prev-btn {
+    margin-right: 10px;
+  }
+  
+  .next-btn {
+    margin-left: 10px;
+  }
+}
+  </style>
+    <!-- Header -->
+    <header class="dark-header">
+        <a href="#" class="dark-logo">Tapium</a>
+        
+        <nav class="dark-nav">
+            <button class="dark-nav-link" onclick="scrollToSection('about')">About</button>
+            <button class="dark-nav-link" onclick="scrollToSection('features')">Features</button>
+            <button class="dark-nav-link" onclick="scrollToSection('roadmap')">Roadmap</button>
+            <button class="dark-nav-link" onclick="scrollToSection('community')">Contact</button>
+        </nav>
+
+        <div class="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </div>
+    </header>
+
+    <main class="dark-container">
+        <!-- Hero Section -->
+        <section class="dark-content-container pad-xxlarge">
+            <div class="hero-content">
+                <!-- App Icon/Logo -->
+                <div class="hero-icon">
+                    <div class="app-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2">
+                            <circle cx="8" cy="8" r="6"></circle>
+                            <path d="M18.09 10.37A6 6 0 1 1 10.37 18.09"></path>
+                            <path d="M7 6h1v4"></path>
+                            <path d="M16.71 13.88L18.09 10.37"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Main Headlines -->
+                <h1 class="display-huge hero-title">
+                    Tapium — Tap to Earn Coins, Rise Through Ranks
+                </h1>
+                
+                <p class="body-large hero-subtitle">
+                    A gamified mining simulator with real rewards, designed solo by Sayyed Bukhari. 
+                    Experience the ultimate tap-to-earn adventure with ranks, achievements, and real coin rewards.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="hero-buttons">
+                    <button class="btn-primary dark-button-animate" onclick="handleDownloadAPK()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7,10 12,15 17,10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download APK
+                    </button>
+                    
+                    <button class="btn-secondary dark-button-animate" onclick="handleiOSNotify()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                        </svg>
+                        Coming Soon to iOS
+                    </button>
+                </div>
+
+                <!-- Feature Preview Cards -->
+                <div class="hero-preview">
+                    <div class="preview-card">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2">
+                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                        </svg>
+                        <h3 class="heading-3">Live Beta</h3>
+                        <p class="body-small">App is live and actively being improved with user feedback</p>
+                    </div>
+
+                    <div class="preview-card">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2">
+                            <circle cx="8" cy="8" r="6"></circle>
+                            <path d="M18.09 10.37A6 6 0 1 1 10.37 18.09"></path>
+                            <path d="M7 6h1v4"></path>
+                            <path d="M16.71 13.88L18.09 10.37"></path>
+                        </svg>
+                        <h3 class="heading-3">Real Rewards</h3>
+                        <p class="body-small">Earn actual coins through strategic tapping and progression</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="dark-content-container pad-xlarge">
+            <div class="about-container">
+                <!-- Section Header -->
+                <div class="section-header">
+                    <h2 class="display-large">What is Tapium?</h2>
+                    <p class="body-large section-subtitle">
+                        A revolutionary tap-to-earn mining simulator that combines strategic gameplay 
+                        with real rewards, built from the ground up by an independent developer.
+                    </p>
+                </div>
+
+                <!-- Main Description -->
+                <div class="about-grid">
+                    <div>
+                        <h3 class="heading-1">Gamified Mining Experience</h3>
+                        <div class="about-features">
+                            <div class="feature-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <circle cx="12" cy="12" r="6"></circle>
+                                    <circle cx="12" cy="12" r="2"></circle>
+                                </svg>
+                                <span class="body-medium">Tap-to-earn mining with strategic energy management</span>
+                            </div>
+                            <div class="feature-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2">
+                                    <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"></polygon>
+                                </svg>
+                                <span class="body-medium">XP system with progression-based unlocks</span>
+                            </div>
+                            <div class="feature-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                                <span class="body-medium">Honor ranks and competitive leaderboards</span>
+                            </div>
+                            <div class="feature-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2">
+                                    <circle cx="8" cy="8" r="6"></circle>
+                                    <path d="M18.09 10.37A6 6 0 1 1 10.37 18.09"></path>
+                                    <path d="M7 6h1v4"></path>
+                                    <path d="M16.71 13.88L18.09 10.37"></path>
+                                </svg>
+                                <span class="body-medium">Real balance-based shop with auto-payment system</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="heading-1">Solo Development Vision</h3>
+                        <p class="body-medium about-text">
+                            Tapium is crafted entirely by Sayyed Bukhari, an independent developer who believes 
+                            in creating authentic gaming experiences. Every feature is designed with player 
+                            satisfaction and fair monetization in mind.
+                        </p>
+                        <p class="body-medium about-text">
+                            The app features a comprehensive achievement system, tag unlocks, and competitive 
+                            elements inspired by popular games like PUBG, 8-Ball Pool, and Snapchat Avatars.
+                        </p>
+                        <p class="body-medium about-text">
+                            Community-driven development ensures that player feedback directly shapes the 
+                            future of the game, making it a truly collaborative experience.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Key Stats -->
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="display-medium stat-value">Beta</div>
+                        <div class="body-medium stat-label">Current Status</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="display-medium stat-value">Android</div>
+                        <div class="body-medium stat-label">Platform Available</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="display-medium stat-value">Real</div>
+                        <div class="body-medium stat-label">Reward System</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="display-medium stat-value">Solo</div>
+                        <div class="body-medium stat-label">Developer Team</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="dark-content-container pad-xlarge">
+            <div class="features-container">
+                <!-- Section Header -->
+                <div class="section-header">
+                    <h2 class="display-large">Game Features</h2>
+                    <p class="body-large section-subtitle">
+                        Experience a comprehensive gaming ecosystem designed to reward skill, 
+                        strategy, and dedication.
+                    </p>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="features-grid" id="featuresGrid">
+                    <!-- Features will be populated by JavaScript -->
+                </div>
+
+                <!-- Call to Action -->
+                <div class="features-cta">
+                    <h3 class="heading-1">Ready to Start Earning?</h3>
+                    <p class="body-medium cta-text">
+                        Join the Tapium community and begin your journey to the top of the leaderboards.
+                    </p>
+                    <button class="btn-primary dark-button-animate">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path>
+                            <path d="M13 13l6 6"></path>
+                        </svg>
+                        Start Tapping Now
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap Section -->
+        <section id="roadmap" class="dark-content-container pad-xlarge">
+            <div class="roadmap-container">
+                <!-- Section Header -->
+                <div class="section-header">
+                    <h2 class="display-large">Development Roadmap</h2>
+                    <p class="body-large section-subtitle">
+                        Track our progress and see what's coming next in the Tapium ecosystem.
+                    </p>
+                </div>
+
+                <!-- Roadmap Timeline -->
+                <div class="roadmap-grid" id="roadmapGrid">
+                    <!-- Roadmap phases will be populated by JavaScript -->
+                </div>
+
+                <!-- Progress Summary -->
+                <div class="roadmap-summary">
+                    <h3 class="heading-2">Development Progress</h3>
+                    <p class="body-medium summary-text">
+                        We're constantly evolving based on user feedback and community suggestions. 
+                        Your input helps shape the future of Tapium.
+                    </p>
+                    <button class="btn-secondary dark-button-animate">
+                        Join Community Updates
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="dark-content-container pad-xlarge">
+            <div class="how-it-works-container">
+                <!-- Section Header -->
+                <div class="section-header">
+                    <h2 class="display-large">How It Works</h2>
+                    <p class="body-large section-subtitle">
+                        Get started in minutes and begin earning real rewards through strategic gameplay.
+                    </p>
+                </div>
+
+                <!-- Steps Grid -->
+                <div class="steps-grid" id="stepsGrid">
+                    <!-- Steps will be populated by JavaScript -->
+                </div>
+
+                <!-- Get Started CTA -->
+                <div class="steps-cta">
+                    <h3 class="heading-1">Ready to Begin Your Journey?</h3>
+                    <p class="body-medium cta-text">
+                        Download Tapium now and start earning real rewards through strategic gameplay.
+                    </p>
+                    <div class="cta-buttons">
+                        <button class="btn-primary dark-button-animate">Download APK</button>
+                        <button class="btn-secondary dark-button-animate">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshots Section -->
+        <section class="dark-content-container pad-xlarge">
+            <div class="screenshots-container">
+                <!-- Section Header -->
+                <div class="section-header">
+                    <h2 class="display-large">App Screenshots</h2>
+                    <p class="body-large section-subtitle">
+                        Take a look at the Tapium interface and see the gaming experience in action.
+                    </p>
+                </div>
+
+                <!-- Screenshots Carousel -->
+                <div class="screenshots-carousel">
+                    <button class="carousel-btn prev-btn" onclick="prevSlide()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2">
+                            <polyline points="15,18 9,12 15,6"></polyline>
+                        </svg>
+                    </button>
+
+                    <div class="screenshot-display">
+                        <div class="smartphone-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                            </svg>
+                        </div>
+                        
+                        <div class="screenshot-frame" id="screenshotFrame">
+                            <div class="screenshot-content" id="screenshotContent">
+                                <h4 class="heading-3" id="screenshotTitle">User Panel</h4>
+                                <p class="body-small" id="screenshotDesc">Main dashboard with coin balance and energy</p>
+                            </div>
+                        </div>
+
+                        <h3 class="heading-2" id="mainScreenshotTitle">User Panel</h3>
+                        <p class="body-medium" id="mainScreenshotDesc">Main dashboard with coin balance and energy</p>
+                    </div>
+
+                    <button class="carousel-btn next-btn" onclick="nextSlide()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2">
+                            <polyline points="9,18 15,12 9,6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Dots Indicator -->
+                <div class="dots-indicator" id="dotsIndicator">
+                    <!-- Dots will be populated by JavaScript -->
+                </div>
+
+                <!-- Screenshots Grid Preview -->
+                <div class="screenshots-thumbs" id="screenshotsThumbs">
+                    <!-- Thumbnails will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="dark-content-container pad-xlarge">
+            <div class="community-container">
+                <!-- Section Header -->
+                <div class="section-header">
+                    <h2 class="display-large">Join the Community</h2>
+                    <p class="body-large section-subtitle">
+                        Connect with fellow players, share feedback, and stay updated on the latest Tapium developments.
+                    </p>
+                </div>
+
+                <!-- Community Grid -->
+                <div class="community-grid">
+                    <!-- Telegram Community -->
+                    <div class="community-card">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                        </svg>
+                        <h3 class="heading-2">Telegram Community</h3>
+                        <p class="body-medium community-text">
+                            Join our active Telegram group for real-time discussions, tips, and community support.
+                        </p>
+                        <button class="btn-primary dark-button-animate full-width" onclick="handleTelegramClick()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            </svg>
+                            Join Telegram
+                        </button>
+                    </div>
+
+                    <!-- Email Updates -->
+                    <div class="community-card">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <h3 class="heading-2">Stay Updated</h3>
+                        <p class="body-medium community-text">
+                            Subscribe to receive roadmap updates, feature announcements, and exclusive content.
+                        </p>
+                        
+                        <form onsubmit="handleEmailSubmit(event)" class="email-form">
+                            <input
+                                type="email"
+                                id="emailInput"
+                                placeholder="Enter your email"
+                                class="email-input"
+                                required
+                            />
+                            <button type="submit" class="btn-secondary dark-button-animate full-width" id="emailSubmitBtn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22,2 15,22 11,13 2,9 22,2"></polygon>
+                                </svg>
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Feedback Section -->
+                <div class="feedback-section">
+                    <h3 class="heading-1">Your Feedback Shapes Tapium</h3>
+                    <p class="body-large feedback-text">
+                        As a solo-developed project, community input is invaluable. Share your ideas, 
+                        report bugs, or suggest new features.
+                    </p>
+
+                    <form onsubmit="handleFeedbackSubmit(event)" class="feedback-form">
+                        <textarea
+                            id="feedbackMessage"
+                            placeholder="Share your thoughts, suggestions, or feedback..."
+                            rows="4"
+                            class="feedback-textarea"
+                            required
+                        ></textarea>
+                        <button type="submit" class="btn-primary dark-button-animate">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22,2 15,22 11,13 2,9 22,2"></polygon>
+                            </svg>
+                            Send Feedback
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h4 class="heading-3">Direct Support</h4>
+                    <p class="body-medium contact-text">
+                        For technical issues or business inquiries, reach out directly:
+                    </p>
+                    <a href="mailto:support@tapium.com" class="email-link">
+                        support@tapium.com
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="dark-content-container">
+            <!-- Main Footer Content -->
+            <div class="footer-grid">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <h3 class="heading-2 brand-title">Tapium</h3>
+                    <p class="body-medium brand-slogan">Tap to earn coins. Rise through the ranks.</p>
+                    <p class="body-small brand-version">Version: Beta v1.0</p>
+                    <button onclick="scrollToTop()" class="footer-btn">Back to Top</button>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h4 class="heading-3">Quick Links</h4>
+                    <div class="links-list">
+                        <button onclick="scrollToSection('about')" class="footer-link">About Tapium</button>
+                        <button onclick="scrollToSection('features')" class="footer-link">Features</button>
+                        <button onclick="scrollToSection('roadmap')" class="footer-link">Roadmap</button>
+                        <button onclick="scrollToSection('community')" class="footer-link">Community</button>
+                    </div>
+                </div>
+
+                <!-- Legal & Info -->
+                <div class="footer-legal">
+                    <h4 class="heading-3">Information</h4>
+                    <div class="links-list">
+                        <a href="#privacy" class="footer-link">Privacy Policy</a>
+                        <a href="#terms" class="footer-link">Terms of Service</a>
+                        <a href="#support" class="footer-link">Support</a>
+                        <a href="#api" class="footer-link">API Documentation</a>
+                    </div>
+                </div>
+
+                <!-- Developer Section -->
+                <div class="footer-developer">
+                    <h4 class="heading-3">Developer</h4>
+                    <p class="body-medium developer-title">Solo Developer</p>
+                    <p class="body-small developer-name">Sayyed Bukhari</p>
+                    <p class="body-small developer-description">
+                        Building innovative mobile experiences with passion for gaming and community.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p class="body-small">© 2025 Tapium. All rights reserved.</p>
+                </div>
+
+                <div class="made-with">
+                    <span class="body-small">Made with</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2">
+                        <polyline points="16,18 22,12 16,6"></polyline>
+                        <polyline points="8,6 2,12 8,18"></polyline>
+                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2">
+                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                        <line x1="6" y1="1" x2="6" y2="4"></line>
+                        <line x1="10" y1="1" x2="10" y2="4"></line>
+                        <line x1="14" y1="1" x2="14" y2="4"></line>
+                    </svg>
+                    <span class="body-small">by Sayyed Bukhari</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+// Mock data for Tapium website
+const mockData = {
+  app: {
+    name: "Tapium",
+    slogan: "Tap to earn coins. Rise through the ranks.",
+    version: "Beta v1.0",
+    developer: "Sayyed Bukhari",
+    status: "Live Beta",
+    platform: "Android (iOS Coming Soon)"
+  },
+  
+  stats: {
+    currentUsers: "1,500+",
+    totalCoinsEarned: "2.5M+",
+    achievements: "50+",
+    dailyActiveUsers: "800+"
+  },
+
+  screenshots: [
+    {
+      id: 1,
+      title: "User Panel",
+      description: "Main dashboard with coin balance and energy"
+    },
+    {
+      id: 2,
+      title: "Achievements",
+      description: "Tag system and milestone rewards"
+    },
+    {
+      id: 3,
+      title: "Leaderboard",
+      description: "Global rankings and competitive view"
+    },
+    {
+      id: 4,
+      title: "Shop",
+      description: "Real balance shop with boosts and items"
+    },
+    {
+      id: 5,
+      title: "Admin Panel",
+      description: "Backend management interface"
+    },
+    {
+      id: 6,
+      title: "Payment System",
+      description: "Auto payment and balance management"
+    }
+  ],
+
+  features: [
+    {
+      icon: "mouse-pointer",
+      title: "Tap to Mine",
+      description: "Earn coins with every strategic tap and build your wealth"
+    },
+    {
+      icon: "trophy",
+      title: "Achievements & Tags",
+      description: "Complete milestones and unlock unique style elements"
+    },
+    {
+      icon: "shopping-cart",
+      title: "Real Coin Shop",
+      description: "Use real balance to purchase powerful boosts and upgrades"
+    },
+    {
+      icon: "award",
+      title: "Honor Ranks & Tiers",
+      description: "Prove your status and climb through prestigious rank systems"
+    },
+    {
+      icon: "battery",
+      title: "Energy System",
+      description: "Strategic energy management and refill mechanics"
+    },
+    {
+      icon: "credit-card",
+      title: "Auto Payment System",
+      description: "Real-time balance credit system with seamless transactions"
+    },
+    {
+      icon: "bar-chart-3",
+      title: "Global Leaderboards",
+      description: "See how you stack up against players worldwide"
+    },
+    {
+      icon: "user",
+      title: "Avatar System",
+      description: "Customize your presence (Coming Soon)"
+    },
+    {
+      icon: "package",
+      title: "Inventory Management",
+      description: "Manage your upgrades and boosts (Coming Soon)"
+    },
+    {
+      icon: "crown",
+      title: "Royal Pass",
+      description: "Seasonal progression system (Future Update)"
+    }
+  ],
+
+  roadmapPhases: [
+    {
+      phase: "Phase 1",
+      title: "Beta Launch",
+      status: "completed",
+      icon: "check-circle",
+      description: "Foundation and Core Features",
+      items: [
+        "App Live on Android (Beta)",
+        "Manual Payment Verification",
+        "Basic Admin System",
+        "Tags, Ranks, Achievements Functional"
+      ]
+    },
+    {
+      phase: "Phase 2",
+      title: "Growth Updates",
+      status: "ongoing",
+      icon: "wrench",
+      description: "Enhancement and Automation",
+      items: [
+        "Auto Payment System Integration",
+        "Expanded Supabase Backend",
+        "Professional Hosting & Domain",
+        "More Shop Items & Dynamic Tags"
+      ]
+    },
+    {
+      phase: "Phase 3",
+      title: "Future Expansion",
+      status: "upcoming",
+      icon: "sparkles",
+      description: "Advanced Features and Cross-platform",
+      items: [
+        "Avatars, Inventory & Personalization",
+        "Season System & Leaderboard Reset Logic",
+        "Referrals, VIP Memberships, Royal Pass",
+        "Cross-platform support (Mobile + Desktop)"
+      ]
+    }
+  ],
+
+  steps: [
+    {
+      step: "01",
+      icon: "mouse-pointer",
+      title: "Tap to Mine Coins",
+      description: "Start your journey by tapping to mine coins. Each tap earns you currency and experience points.",
+      details: "Strategic tapping with energy management"
+    },
+    {
+      step: "02", 
+      icon: "trending-up",
+      title: "Earn XP, Tags & Ranks",
+      description: "Progress through honor ranks, unlock achievement tags, and build your reputation in the community.",
+      details: "Achievement system with milestone rewards"
+    },
+    {
+      step: "03",
+      icon: "coins",
+      title: "Deposit & Use Real Balance",
+      description: "Add real funds to your account and use them in the shop for powerful boosts and exclusive items.",
+      details: "Auto payment system with instant credit"
+    },
+    {
+      step: "04",
+      icon: "bar-chart-3",
+      title: "Climb the Leaderboards",
+      description: "Compete with players worldwide and prove you're the ultimate Tapium champion.",
+      details: "Global rankings and competitive play"
+    }
+  ]
+};
+
+// Icon mappings for SVG generation
+const iconSVGs = {
+  "mouse-pointer": '<path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path><path d="M13 13l6 6"></path>',
+  "trophy": '<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55.47.98.97 1.21C12.15 18.75 14 20 14 20"></path><path d="M14 14.66V17c0 .55-.53.98-1.03 1.21C11.85 18.75 10 20 10 20"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"></path>',
+  "shopping-cart": '<circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>',
+  "award": '<circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>',
+  "battery": '<rect x="1" y="6" width="18" height="12" rx="2" ry="2"></rect><path d="M23 13v-2"></path>',
+  "credit-card": '<rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line>',
+  "bar-chart-3": '<path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path>',
+  "user": '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>',
+  "package": '<path d="M16.5 9.4 7.55 4.24"></path><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.29,7 12,12 20.71,7"></polyline><line x1="12" y1="22" x2="12" y2="12"></line>',
+  "crown": '<path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm6 16h8"></path>',
+  "check-circle": '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22,4 12,14.01 9,11.01"></polyline>',
+  "wrench": '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>',
+  "sparkles": '<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .962L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path>',
+  "trending-up": '<polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>',
+  "coins": '<circle cx="8" cy="8" r="6"></circle><path d="M18.09 10.37A6 6 0 1 1 10.37 18.09"></path><path d="M7 6h1v4"></path><path d="M16.71 13.88L18.09 10.37"></path>'
+};
+
+function createIcon(iconName, size = 24, color = "currentColor") {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("width", size);
+  svg.setAttribute("height", size);
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("fill", "none");
+  svg.setAttribute("stroke", color);
+  svg.setAttribute("stroke-width", "2");
+  svg.innerHTML = iconSVGs[iconName] || '';
+  return svg;
+}
+
+// Global variables
+let currentScreenshot = 0;
+let emailSubmitted = false;
+
+// Navigation functions
+function scrollToSection(sectionId) {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Hero section functions
+function handleDownloadAPK() {
+  alert('APK download would start here');
+}
+
+function handleiOSNotify() {
+  alert('iOS notification signup would happen here');
+}
+
+// Screenshot carousel functions
+function prevSlide() {
+  currentScreenshot = (currentScreenshot - 1 + mockData.screenshots.length) % mockData.screenshots.length;
+  updateScreenshotDisplay();
+}
+
+function nextSlide() {
+  currentScreenshot = (currentScreenshot + 1) % mockData.screenshots.length;
+  updateScreenshotDisplay();
+}
+
+function goToSlide(index) {
+  currentScreenshot = index;
+  updateScreenshotDisplay();
+}
+
+function updateScreenshotDisplay() {
+  const screenshot = mockData.screenshots[currentScreenshot];
+  
+  // Update main display
+  document.getElementById('screenshotTitle').textContent = screenshot.title;
+  document.getElementById('screenshotDesc').textContent = screenshot.description;
+  document.getElementById('mainScreenshotTitle').textContent = screenshot.title;
+  document.getElementById('mainScreenshotDesc').textContent = screenshot.description;
+  
+  // Update dots
+  const dots = document.querySelectorAll('.dot');
+  dots.forEach((dot, index) => {
+    if (index === currentScreenshot) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
+    }
+  });
+  
+  // Update thumbnails
+  const thumbs = document.querySelectorAll('.screenshot-thumb');
+  thumbs.forEach((thumb, index) => {
+    const thumbTitle = thumb.querySelector('.thumb-title');
+    if (index === currentScreenshot) {
+      thumb.classList.add('active');
+      thumbTitle.classList.add('active');
+    } else {
+      thumb.classList.remove('active');
+      thumbTitle.classList.remove('active');
+    }
+  });
+}
+
+// Community section functions
+function handleEmailSubmit(e) {
+  e.preventDefault();
+  const emailInput = document.getElementById('emailInput');
+  const submitBtn = document.getElementById('emailSubmitBtn');
+  
+  if (emailInput.value && !emailSubmitted) {
+    emailSubmitted = true;
+    submitBtn.innerHTML = `
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+      Subscribed!
+    `;
+    
+    setTimeout(() => {
+      emailSubmitted = false;
+      emailInput.value = '';
+      submitBtn.innerHTML = `
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22,2 15,22 11,13 2,9 22,2"></polygon>
+        </svg>
+        Subscribe
+      `;
+    }, 3000);
+  }
+}
+
+function handleFeedbackSubmit(e) {
+  e.preventDefault();
+  const messageInput = document.getElementById('feedbackMessage');
+  
+  if (messageInput.value) {
+    alert('Thank you for your feedback! We appreciate your input.');
+    messageInput.value = '';
+  }
+}
+
+function handleTelegramClick() {
+  alert('Telegram community link would open here');
+}
+
+// Initialize page content
+function initializeFeatures() {
+  const featuresGrid = document.getElementById('featuresGrid');
+  if (!featuresGrid) return;
+  
+  mockData.features.forEach(feature => {
+    const isComingSoon = feature.description.includes('Coming Soon') || feature.description.includes('Future');
+    
+    const featureCard = document.createElement('div');
+    featureCard.className = `feature-card dark-hover ${isComingSoon ? 'coming-soon' : ''}`;
+    
+    const icon = createIcon(feature.icon, 40, isComingSoon ? 'var(--text-muted)' : 'var(--brand-primary)');
+    icon.style.marginBottom = '24px';
+    
+    featureCard.innerHTML = `
+      <h3 class="heading-2" style="margin-bottom: 16px; color: ${isComingSoon ? 'var(--text-muted)' : 'var(--text-primary)'}">
+        ${feature.title}
+        ${isComingSoon ? '<span class="feature-soon-badge">' + (feature.description.includes('Coming Soon') ? '• Soon' : '• Future') + '</span>' : ''}
+      </h3>
+      <p class="body-medium" style="color: ${isComingSoon ? 'var(--text-muted)' : 'var(--text-secondary)'}">
+        ${feature.description}
+      </p>
+    `;
+    
+    featureCard.insertBefore(icon, featureCard.firstChild);
+    featuresGrid.appendChild(featureCard);
+  });
+}
+
+function initializeRoadmap() {
+  const roadmapGrid = document.getElementById('roadmapGrid');
+  if (!roadmapGrid) return;
+  
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'completed': return 'var(--brand-primary)';
+      case 'ongoing': return '#FFA500';
+      case 'upcoming': return 'var(--text-muted)';
+      default: return 'var(--text-muted)';
+    }
+  };
+
+  const getStatusText = (status) => {
+    switch (status) {
+      case 'completed': return 'Completed';
+      case 'ongoing': return 'In Progress';
+      case 'upcoming': return 'Planned';
+      default: return 'Planned';
+    }
+  };
+
+  const getStatusClass = (status) => {
+    switch (status) {
+      case 'completed': return 'status-completed';
+      case 'ongoing': return 'status-ongoing';
+      case 'upcoming': return 'status-upcoming';
+      default: return 'status-upcoming';
+    }
+  };
+  
+  mockData.roadmapPhases.forEach(phase => {
+    const statusColor = getStatusColor(phase.status);
+    
+    const roadmapCard = document.createElement('div');
+    roadmapCard.className = 'roadmap-card dark-hover';
+    
+    const icon = createIcon(phase.icon, 32, statusColor);
+    
+    roadmapCard.innerHTML = `
+      <div class="status-badge ${getStatusClass(phase.status)}">
+        ${getStatusText(phase.status)}
+      </div>
+      
+      <div class="phase-header">
+        <span class="body-medium" style="color: ${statusColor}">
+          ${phase.phase}
+        </span>
+      </div>
+      
+      <h3 class="heading-1 phase-title">${phase.title}</h3>
+      <p class="body-small phase-description">${phase.description}</p>
+      
+      <div class="phase-items">
+        ${phase.items.map(item => `
+          <div class="phase-item">
+            <div class="phase-bullet" style="background: ${statusColor}"></div>
+            <span class="body-small" style="color: var(--text-secondary)">${item}</span>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    
+    roadmapCard.querySelector('.phase-header').insertBefore(icon, roadmapCard.querySelector('.phase-header').firstChild);
+    roadmapGrid.appendChild(roadmapCard);
+  });
+}
+
+function initializeSteps() {
+  const stepsGrid = document.getElementById('stepsGrid');
+  if (!stepsGrid) return;
+  
+  mockData.steps.forEach((step, index) => {
+    const stepCard = document.createElement('div');
+    stepCard.className = 'step-card';
+    
+    const icon = createIcon(step.icon, 40, 'var(--brand-primary)');
+    
+    stepCard.innerHTML = `
+      ${index < mockData.steps.length - 1 ? '<div class="step-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2" style="transform: rotate(90deg)"><polyline points="9,18 15,12 9,6"></polyline></svg></div>' : ''}
+      
+      <div class="step-content">
+        <div class="step-number">${step.step}</div>
+        <div class="step-icon"></div>
+        <h3 class="heading-2 step-title">${step.title}</h3>
+        <p class="body-medium step-description">${step.description}</p>
+        <p class="body-small step-details">${step.details}</p>
+      </div>
+    `;
+    
+    stepCard.querySelector('.step-icon').appendChild(icon);
+    stepsGrid.appendChild(stepCard);
+  });
+}
+
+function initializeScreenshots() {
+  // Initialize dots
+  const dotsIndicator = document.getElementById('dotsIndicator');
+  if (dotsIndicator) {
+    mockData.screenshots.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = `dot ${index === 0 ? 'active' : ''}`;
+      dot.onclick = () => goToSlide(index);
+      dotsIndicator.appendChild(dot);
+    });
+  }
+  
+  // Initialize thumbnails
+  const screenshotsThumbs = document.getElementById('screenshotsThumbs');
+  if (screenshotsThumbs) {
+    mockData.screenshots.forEach((screenshot, index) => {
+      const thumb = document.createElement('button');
+      thumb.className = `screenshot-thumb ${index === 0 ? 'active' : ''}`;
+      thumb.onclick = () => goToSlide(index);
+      
+      thumb.innerHTML = `
+        <div class="thumb-frame"></div>
+        <p class="body-small thumb-title ${index === 0 ? 'active' : ''}">${screenshot.title}</p>
+      `;
+      
+      screenshotsThumbs.appendChild(thumb);
+    });
+  }
+}
+
+// Initialize everything when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+  initializeFeatures();
+  initializeRoadmap();
+  initializeSteps();
+  initializeScreenshots();
+  
+  // Initialize screenshot display
+  updateScreenshotDisplay();
+});
+</script>
+</body>
+</html>
